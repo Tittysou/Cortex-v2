@@ -1,0 +1,12 @@
+{
+  "main": "src/shard.js",
+  "dependencies": {
+    "discord-api-types": "^0.37.103",
+    "discord.js": "^14.16.3",
+    "mongodb": "^6.10.0",
+    "sqlite3": "^5.1.7"
+  },
+  "scripts": {
+    "start": "node src/shard.js"
+  }
+}
