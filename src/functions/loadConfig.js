@@ -56,7 +56,10 @@ const checkConfig = async () => {
         id: "bot ID",
         devGuild: "developer guild ID",
         developerIds: "developer ID(s)",
-        prefix: "command prefix"
+        prefix: "command prefix",
+        mongoDBUrl: "mongo URL",
+        webhookToken: "webhook token",
+        webhookId: "webhook ID"
     };
 
     for (const [field, description] of Object.entries(requiredFields)) {

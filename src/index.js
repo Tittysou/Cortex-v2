@@ -9,6 +9,7 @@ const prefixHandler = require('./functions/loadPrefix');
 const checkConfig = require('./functions/loadConfig');
 const connectToDatabase = require('./MDatabase');
 const { interactionLogger } = require('./utils/UserLogs');
+const { WebhookUtil } = require('./utils/WebhookUtil');
 const config = require('../config.json');
 
 const client = new Client({
@@ -41,6 +42,7 @@ const initializeBot = async () => {
     checkIntents(client);
     connectToDatabase(client);
     logTotalLines(client);
+    WebhookUtil(client);
 
     const ButtonHandler = require('./handlers/buttonHandler');
     const SelectMenuHandler = require('./handlers/menuHandler');

@@ -7,5 +7,7 @@
     ],
     "devGuild": "",
     "prefix": "",
-    "mongoDBUrl": ""
+    "mongoDBUrl": "",
+    "webhookToken": "",
+    "webhhookId": ""
 }
