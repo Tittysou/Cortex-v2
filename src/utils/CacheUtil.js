@@ -1,7 +1,7 @@
 function createCache() {
     const cache = {};
   
-    function set(key, value, ttl = 60000) { // default TTL is 1 minute
+    function set(key, value, ttl = 60000) {
       const expireTime = Date.now() + ttl;
       cache[key] = { value, expireTime };
     }

@@ -36,7 +36,7 @@ const client = new Client({
 // example of readJSON and writeJSON
 async function fetchData() {
   try {
-    const data = await readJSON('C:/Users/gta5r/OneDrive/Desktop/Bots/Cortex/Cortex v2/config.json');
+    const data = await readJSON('./config.json');
     //info(data);
   } catch (error) {
     console.error('Failed to read user data:', error);
@@ -45,7 +45,7 @@ async function fetchData() {
 
 const data = {
   userId: 1,
-  username: "gta5r",
+  username: "Titsou",
   role: "admin",
   preferences: {
     theme: "dark",
@@ -57,9 +57,9 @@ const filePath = './example.json'; // you can change the name to anything (it al
 writeJSON(filePath, data);
 
 // example of simple cron
-//simplecron('10s', () => {
-  //info('Task executed');
-//});
+/*simplecron('10s', () => {
+  info('Task executed');
+});*/
 
 const initializeBot = async () => {
     await checkConfig();
