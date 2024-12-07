@@ -10,6 +10,8 @@ const checkConfig = require('./functions/loadConfig');
 const connectToDatabase = require('./MDatabase');
 const { interactionLogger } = require('./utils/UserLogs');
 const { WebhookUtil } = require('./utils/WebhookUtil');
+const { readJSON, writeJSON } = require('./utils/FileUtils');
+const { simplecron } = require('./utils/Cron');
 const config = require('../config.json');
 
 const client = new Client({
@@ -31,6 +33,34 @@ const client = new Client({
   ],
 });
 
+// example of readJSON and writeJSON
+async function fetchData() {
+  try {
+    const data = await readJSON('C:/Users/gta5r/OneDrive/Desktop/Bots/Cortex/Cortex v2/config.json');
+    //info(data);
+  } catch (error) {
+    console.error('Failed to read user data:', error);
+  }
+}
+
+const data = {
+  userId: 1,
+  username: "gta5r",
+  role: "admin",
+  preferences: {
+    theme: "dark",
+    notifications: true
+  }
+};
+
+const filePath = './example.json'; // you can change the name to anything (it also creates the file if it doesn't exist)
+writeJSON(filePath, data);
+
+// example of simple cron
+//simplecron('10s', () => {
+  //info('Task executed');
+//});
+
 const initializeBot = async () => {
     await checkConfig();
     require('./utils/packageChecker')(client);
@@ -43,6 +73,7 @@ const initializeBot = async () => {
     connectToDatabase(client);
     logTotalLines(client);
     WebhookUtil(client);
+    fetchData(client);
 
     const ButtonHandler = require('./handlers/buttonHandler');
     const SelectMenuHandler = require('./handlers/menuHandler');

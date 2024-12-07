@@ -4,6 +4,8 @@
     "discord-api-types": "^0.37.103",
     "discord.js": "^14.16.3",
     "mongodb": "^6.10.0",
+    "node-cache": "^5.1.2",
+    "node-cron": "^3.0.3",
     "sqlite3": "^5.1.7"
   },
   "scripts": {
