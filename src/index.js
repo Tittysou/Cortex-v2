@@ -12,6 +12,10 @@ const { interactionLogger } = require('./utils/UserLogs');
 const { WebhookUtil } = require('./utils/WebhookUtil');
 const { readJSON, writeJSON } = require('./utils/FileUtils');
 const { simplecron } = require('./utils/Cron');
+const { normalizePath } = require('./utils/PathNormalizer');
+const { parseCSV, generateCSV } = require('./utils/CSVParser');
+const { extractURLs } = require('./utils/Regex');
+const { paginate } = require('./utils/Pagination')
 const config = require('../config.json');
 
 const client = new Client({
@@ -38,8 +42,8 @@ async function fetchData() {
   try {
     const data = await readJSON('./config.json');
     //info(data);
-  } catch (error) {
-    console.error('Failed to read user data:', error);
+  } catch (err) {
+    error(`Failed to read user data: ${err}`);
   }
 }
 
@@ -74,7 +78,7 @@ const initializeBot = async () => {
     logTotalLines(client);
     WebhookUtil(client);
     fetchData(client);
-
+    
     const ButtonHandler = require('./handlers/buttonHandler');
     const SelectMenuHandler = require('./handlers/menuHandler');
     const ModalHandler = require('./handlers/modalHandler');
