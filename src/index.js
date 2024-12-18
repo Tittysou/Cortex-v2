@@ -4,7 +4,7 @@ const { loadCommands } = require('./functions/loadCommands');
 const { logTotalLines } = require('./utils/LineCount');
 const { checkIntents } = require('./utils/IntentChecker');
 const { initializeComponents } = require('./functions/loadComponents');
-const { info, success, warn, error } = require('./utils/logs');
+const { info, success, warn, error, debug } = require('./utils/logs');
 const prefixHandler = require('./functions/loadPrefix');
 const checkConfig = require('./functions/loadConfig');
 const connectToDatabase = require('./MDatabase');
@@ -111,3 +111,8 @@ const initializeBot = async () => {
 };
 
 initializeBot();
+
+process.on('SIGINT', () => {
+  debug("Shutting down..")
+  process.exit(0)
+});
