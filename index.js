@@ -23,5 +23,5 @@ manager.on('shardCreate', shard => {
     });
 });
 
-manager.spawn()
+manager.spawn()  
     .catch(console.error);

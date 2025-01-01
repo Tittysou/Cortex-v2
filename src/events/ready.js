@@ -1,11 +1,27 @@
-const { Events } = require('discord.js');
-const { Client, ActivityType } = require('discord.js');
-const { startActivityCycle, addActivity, removeActivity } = require('../utils/Activity');
-const { info, success, warn, error, debug } = require('../utils/logs');
+const { Events, ActivityType } = require('discord.js');
+const { startActivityCycle } = require('../utils/Activity');
+const { debug } = require('../utils/logs');
 
 module.exports = {
     name: Events.ClientReady,
     execute(client) {
+        client.csize = () => {
+            let totalCommands = 0;
+
+            client.commands.forEach(command => {
+                totalCommands += 1;
+                if (command.data.toJSON().options) {
+                    command.data.toJSON().options.forEach(option => {
+                        if (option.type === 1) {
+                            totalCommands += 1;
+                        }
+                    });
+                }
+            });
+
+            return totalCommands;
+        };
+
         let activities = [
             { name: 'Over Activity 1', type: ActivityType.Watching },
             { name: 'Activity 2', type: ActivityType.Playing },
@@ -13,26 +29,7 @@ module.exports = {
         ];
 
         debug(`Logged in as ${client.user.tag}!`);
-        /*warn(`test`);
-        info(`test`);
-        success(`test`);
-        error(`test`);
-        deleted(`test`);
-        updated(`test`);
-        created(`test`);
-        startup(`test`);
-        command(`test`);
-        event(`test`);
-        component(`test`);
-        prefix(`test`);
-        sql(`test`);
-        mongodb(`test`);
-        members(`test`);
-        channels(`test`);
-        roles(`test`);*/
 
-
-        //                           array     time
         startActivityCycle(client, activities, 5000, (onChangeCallback) => {
         });
     }

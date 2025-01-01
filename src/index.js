@@ -78,7 +78,7 @@ const initializeBot = async () => {
     logTotalLines(client);
     WebhookUtil(client);
     fetchData(client);
-    
+        
     const ButtonHandler = require('./handlers/buttonHandler');
     const SelectMenuHandler = require('./handlers/menuHandler');
     const ModalHandler = require('./handlers/modalHandler');
